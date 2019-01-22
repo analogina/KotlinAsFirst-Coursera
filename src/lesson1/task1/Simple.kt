@@ -1,14 +1,15 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson1.task1
 
-import kotlin.math.*
+import kotlin.math.sqrt
 
 /**
  * Пример
  *
  * Вычисление квадрата целого числа
  */
-fun sqr(x: Int) = x * x
+fun sqr(x: Int): Int = x * x
 
 /**
  * Пример
@@ -48,8 +49,10 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
  * Пример главной функции
  */
 fun main(args: Array<String>) {
-    val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
-    println("Root product: $x1x2")
+//    val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
+//    println("Root product: $x1x2")
+    val result = sqr(6)
+    println("6 * 6 = $result")
 }
 
 /**
@@ -75,7 +78,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(deg: Int, min: Int, sec: Int): Double = TODO()
+fun angleInRadian(deg: Int, min: Int, sec: Int): Double = (deg + min / 60.0 + sec / 60.0 / 60) * kotlin.math.PI / 180
 
 /**
  * Тривиальная
