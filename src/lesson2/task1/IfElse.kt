@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
 
 import lesson1.task1.discriminant
@@ -62,7 +63,22 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+
+    return when {
+        age % 100 in 5..20 -> "$age лет"
+        age % 10 == 1 -> "$age год"
+        age % 10 in 2..4 -> "$age года"
+        else -> "$age лет"
+
+//        age % 10 == 0 -> "$age лет"
+//        age % 10 in 5..9 -> "$age лет"
+//        age % 100 in 10..20 -> "$age лет"
+//        age % 10 == 1 -> "$age год"
+//        else -> "$age года"
+
+    }
+}
 
 /**
  * Простая
@@ -73,7 +89,19 @@ fun ageDescription(age: Int): String = TODO()
  */
 fun timeForHalfWay(t1: Double, v1: Double,
                    t2: Double, v2: Double,
-                   t3: Double, v3: Double): Double = TODO()
+                   t3: Double, v3: Double): Double {
+    val track1 = t1 * v1
+    val track2 = t2 * v2
+    val track3 = t3 * v3
+    val track = track1 + track2 + track3
+    val half = track / 2
+    return when {
+        half <= track1 -> half / track1 * t1
+        half <= track3 -> t1 + t2 + (t3 - half / track3 * t3)
+        else -> t1 + t2 * (half - track1) / track2
+    }
+
+}
 
 /**
  * Простая
