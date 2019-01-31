@@ -96,9 +96,14 @@ fun timeForHalfWay(t1: Double, v1: Double,
     val track = track1 + track2 + track3
     val half = track / 2
     return when {
-        half <= track1 -> half / track1 * t1
-        half <= track3 -> t1 + t2 + (t3 - half / track3 * t3)
-        else -> t1 + t2 * (half - track1) / track2
+        half <= track1 -> half / v1
+        half <= track3 ->
+            t1 + t2 + (t3 - half / v3)
+        else -> t1 + (half - track1) / v2
+        //val part3 = track3 - half
+        //val partTime3 = part3 / v3
+        //t1 + t2 + partTime3
+
     }
 
 }
@@ -114,7 +119,15 @@ fun timeForHalfWay(t1: Double, v1: Double,
  */
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
-                       rookX2: Int, rookY2: Int): Int = TODO()
+                       rookX2: Int, rookY2: Int): Int {
+    return when {
+        (kingX != rookX1 && kingY != rookY1) && (kingX != rookX2 && kingY != rookY2) -> 0
+        (kingX != rookX1 || kingY != rookY1) && (kingX != rookX2 && kingY != rookY2) -> 1
+        (kingX != rookX1 && kingY != rookY1) && (kingX != rookX2 || kingY != rookY2) -> 2
+        else -> 3
+        //(kingX != rookX1 && kingY != rookY1) || (kingX != rookX2 || kingY != rookY2) -> 3
+    }
+}
 
 /**
  * Простая
