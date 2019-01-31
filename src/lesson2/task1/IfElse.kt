@@ -3,6 +3,8 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -71,12 +73,6 @@ fun ageDescription(age: Int): String {
         age % 10 in 2..4 -> "$age года"
         else -> "$age лет"
 
-//        age % 10 == 0 -> "$age лет"
-//        age % 10 in 5..9 -> "$age лет"
-//        age % 100 in 10..20 -> "$age лет"
-//        age % 10 == 1 -> "$age год"
-//        else -> "$age года"
-
     }
 }
 
@@ -100,9 +96,6 @@ fun timeForHalfWay(t1: Double, v1: Double,
         half <= track3 ->
             t1 + t2 + (t3 - half / v3)
         else -> t1 + (half - track1) / v2
-        //val part3 = track3 - half
-        //val partTime3 = part3 / v3
-        //t1 + t2 + partTime3
 
     }
 
@@ -141,7 +134,18 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  */
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int = TODO()
+                          bishopX: Int, bishopY: Int): Int{
+    val legX = abs(bishopX - kingX)
+    val legY = abs(bishopY - kingY)
+    return when{
+        (kingX != rookX && kingY != rookY) && (legX != legY) -> 0
+        (kingX != rookX || kingY != rookY) && (legX != legY) -> 1
+        (kingX != rookX && kingY != rookY) && (legX == legY) -> 2
+        else -> 3
+        //(kingX != rookX || kingY != rookY) || (legX == legY) -> 3
+
+    }
+}
 
 /**
  * Простая
