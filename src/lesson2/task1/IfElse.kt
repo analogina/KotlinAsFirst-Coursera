@@ -151,11 +151,37 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * Простая
  *
  * Треугольник задан длинами своих сторон a, b, c.
- * Проверить, является ли данный треугольник остроугольным (вернуть 0),
+ * Проверить, является ли данный треугольник остроугольным (вернуть 0),=
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int{
+    //           4          6          8
+    //
+    val a2 = sqr(a)  //16
+    val b2 = sqr(b)  //36
+    val c2 = sqr(c)  //64
+    val sqrMaxSide = max(max(a2 , b2), c2)   //64
+    val sumOfLesserSides = a2 + b2 + c2 - sqrMaxSide   //52
+    //val minsingle = min(min(a2, b2), c2)
+
+    return when{
+        a + b < c || b + c < a || c + a < b -> -1
+        sumOfLesserSides == sqrMaxSide -> 1
+        sumOfLesserSides > sqrMaxSide -> 0   //52 < 64
+        else -> 2
+        //sqr(a) + sqr(b) < sqr(c) || sqr(b) + sqr(c) < sqr(a) || sqr(c) + sqr(a) < sqr(b) -> 0
+        //sqr(a) + sqr(b) == sqr(c) || sqr(b) + sqr(c) == sqr(a) || sqr(c) + sqr(a) == sqr(b) -> 1
+
+//        |\                       /\                \ \
+//        | \                     /  \                \   \
+//        |  \                   /    \                \     \
+//        |   \                 /      \                \        \
+//        |    \               /        \                \           \
+//        |_____\             /__________\                \_____________\
+
+    }
+}
 
 /**
  * Средняя
