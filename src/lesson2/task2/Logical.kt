@@ -82,18 +82,18 @@ fun circleInside(x1: Double, y1: Double, r1: Double,
  * Вернуть true, если кирпич пройдёт
  */
 fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
-    println("*****************************************************")
-    println("Пролезает ли кирпич $a x $b x $c в отверстие $r x $s?")
+    //println("*****************************************************")
+    //println("Пролезает ли кирпич $a x $b x $c в отверстие $r x $s?")
 
-    fun passes(brickSide1: Int, brickSide2: Int, wallSide1: Int, wallSide2: Int): Boolean {
-        println("Пролезает ли $brickSide1 x $brickSide2 в $wallSide1 x $wallSide2?")
-        val result = brickSide1 <= wallSide1 && brickSide2 <= wallSide2 ||
-                brickSide1 <= wallSide2 && brickSide2 <= wallSide1
-        println("$result")
+    fun passes(brickSide1: Int, brickSide2: Int): Boolean {
+        //println("Пролезает ли $brickSide1 x $brickSide2 в $r x $s?")
+        val result = brickSide1 <= r && brickSide2 <= s ||
+                brickSide1 <= s && brickSide2 <= r
+        //println("$result")
         return result
     }
 
-    return passes(a, b, r, s) ||
-            passes(b, c, r, s) ||
-            passes(a, c, r, s)
+    return passes(a, b) ||
+            passes(b, c) ||
+            passes(a, c)
 }
