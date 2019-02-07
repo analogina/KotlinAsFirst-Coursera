@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson3.task1
 
 import kotlin.math.sqrt
@@ -38,7 +39,7 @@ fun isPrime(n: Int): Boolean {
  */
 fun isPerfect(n: Int): Boolean {
     var sum = 1
-    for (m in 2..n/2) {
+    for (m in 2..n / 2) {
         if (n % m > 0) continue
         sum += m
         if (sum > n) break
@@ -74,7 +75,27 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int = when {
+    (n == 1) -> 1
+    (n == 2) -> 1
+    else -> {
+        var predPred = 1
+        var pred = 1
+        var otvet = 0
+        for (i in 3..n) {
+            otvet = pred + predPred
+            println("i = $i")
+            println("pred = $pred")
+            println("predPred = $predPred")
+            println("f($i) = $otvet")
+            predPred = pred
+            pred = otvet
+
+        }
+        println("************")
+        otvet
+    }
+}
 
 /**
  * Простая
