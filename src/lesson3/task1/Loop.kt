@@ -54,7 +54,7 @@ fun isPerfect(n: Int): Boolean {
  *
  * Найти число вхождений цифры m в число n
  */
-fun digitCountInNumber(n: Int, m: Int, step: Int=0): Int {
+fun digitCountInNumber(n: Int, m: Int, step: Int = 0): Int {
     println("    ".repeat(step) + "n: $n, m: $m, step: $step")
     val res = when {
         n == m -> 1
@@ -62,7 +62,7 @@ fun digitCountInNumber(n: Int, m: Int, step: Int=0): Int {
         else -> digitCountInNumber(n / 10, m, step + 1) + digitCountInNumber(n % 10, m, step + 1)
     }
     println("    ".repeat(step) + "res: $res")
-    if(step == 0) {
+    if (step == 0) {
         println("*********************************")
         println()
     }
@@ -97,10 +97,10 @@ fun fib(n: Int): Int = when {
         var otvet = 0
         for (i in 3..n) {
             otvet = pred + predPred
-          //  println("i = $i")
-          //  println("pred = $pred")
-          //  println("predPred = $predPred")
-          //  println("f($i) = $otvet")
+            //  println("i = $i")
+            //  println("pred = $pred")
+            //  println("predPred = $predPred")
+            //  println("f($i) = $otvet")
             predPred = pred
             pred = otvet
 
@@ -110,12 +110,12 @@ fun fib(n: Int): Int = when {
     }
 }
 
-fun fibRec(n: Int): Int= when {
+fun fibRec(n: Int): Int = when {
     (n == 1) -> 1
     (n == 2) -> 1
     else -> {
         print("$n ")
-        if(n == 3){
+        if (n == 3) {
             println()
             System.out.flush()
         }
@@ -137,8 +137,8 @@ fun lcm(m: Int, n: Int): Int = TODO()
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int{
-    for (m in 2..sqrt(n.toDouble()).toInt()){
+fun minDivisor(n: Int): Int {
+    for (m in 2..sqrt(n.toDouble()).toInt()) {
         if (n % m == 0)
             return m
     }
@@ -150,8 +150,8 @@ fun minDivisor(n: Int): Int{
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int{
-    for (m in n/2 downTo 1){
+fun maxDivisor(n: Int): Int {
+    for (m in n / 2 downTo 1) {
         if (n % m == 0)
             return m
     }
@@ -165,9 +165,9 @@ fun maxDivisor(n: Int): Int{
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean{
+fun isCoPrime(m: Int, n: Int): Boolean {
     val minNumber = min(m, n)
-    for (i in 2..minNumber){
+    for (i in 2..minNumber) {
         if (m % i == 0 && n % i == 0) return false
     }
     return true
@@ -180,10 +180,10 @@ fun isCoPrime(m: Int, n: Int): Boolean{
  * то есть, существует ли такое целое k, что m <= k*k <= n.
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
-fun squareBetweenExists(m: Int, n: Int): Boolean{
+fun squareBetweenExists(m: Int, n: Int): Boolean {
     val sqrtM = sqrt(m.toDouble()).toInt()
     val sqrtN = sqrt(n.toDouble()).toInt()
-    for (i in sqrtM..sqrtN){
+    for (i in sqrtM..sqrtN) {
         val sqrI = sqr(i)
         if (sqrI in m..n)
             return true
@@ -207,39 +207,22 @@ fun squareBetweenExists(m: Int, n: Int): Boolean{
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-//fun collatzSteps(x: Int): Int{
-//    if (x == 1)
-//    return 0
-//    else{
-//        var xNext = x
-//        if (x % 2 == 0) {
-//            xNext = x / 2
-//        }
-//
-//    }
-//}
+fun collatzSteps(x: Int): Int {
 
-//fun fib(n: Int): Int = when {
-//    (n == 1) -> 1
-//    (n == 2) -> 1
-//    else -> {
-//        var predPred = 1
-//        var pred = 1
-//        var otvet = 0
-//        for (i in 3..n) {
-//            otvet = pred + predPred
-//          //  println("i = $i")
-//          //  println("pred = $pred")
-//          //  println("predPred = $predPred")
-//          //  println("f($i) = $otvet")
-//            predPred = pred
-//            pred = otvet
-//
-//        }
-//        println("************")
-//        otvet
-//    }
-//}
+    fun nextX(): Int = if (x % 2 == 0) {
+        (x / 2)
+    } else {
+        3 * x + 1
+    }
+
+    return when (x) {
+        1 -> 0
+        else ->
+            1 + collatzSteps(nextX())
+    }
+}
+
+
 /**
  * Средняя
  *
@@ -256,7 +239,8 @@ fun sin(x: Double, eps: Double): Double = TODO()
  * cos(x) = 1 - x^2 / 2! + x^4 / 4! - x^6 / 6! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun cos(x: Double, eps: Double): Double = TODO()
+fun cos(x: Double, eps: Double)
+        : Double = TODO()
 
 /**
  * Средняя
@@ -276,7 +260,8 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int)
+        : Boolean = TODO()
 
 /**
  * Средняя
@@ -297,7 +282,8 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int)
+        : Int = TODO()
 
 /**
  * Сложная
