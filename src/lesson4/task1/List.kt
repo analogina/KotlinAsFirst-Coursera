@@ -5,6 +5,7 @@ package lesson4.task1
 import lesson1.task1.discriminant
 import lesson1.task1.sqr
 import kotlin.math.abs
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 /**
@@ -117,8 +118,7 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double
-{
+fun abs(v: List<Double>): Double {
     val squares: List<Double> = v.map { it * it }
     return sqrt(squares.sum())
 }
@@ -180,7 +180,7 @@ fun mean(list: List<Double>): Double {
 fun center(list: MutableList<Double>): MutableList<Double> {
     val isNotEmpty = list.isNotEmpty()
     /* if only input list is not empty we should modify the list */
-    if(isNotEmpty){
+    if (isNotEmpty) {
         val mean = list.sum() / list.size
         for (i in 0 until list.size) {
             list[i] = list[i] - mean
@@ -197,16 +197,17 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  * представленные в виде списков a и b. Скалярное произведение считать по формуле:
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.0.
  */
-fun times(a: List<Double>, b: List<Double>): Double{
+fun times(a: List<Double>, b: List<Double>): Double {
     val isNotEmpty = a.isNotEmpty()
     var scalar = 0.0
     if (isNotEmpty) {
-        for (i in 0 until a.size){
+        for (i in 0 until a.size) {
             scalar += a[i] * b[i]
         }
     }
     return scalar
 }
+
 /**
  * Средняя
  *
@@ -215,7 +216,19 @@ fun times(a: List<Double>, b: List<Double>): Double{
  * Коэффициенты многочлена заданы списком p: (p0, p1, p2, p3, ..., pN).
  * Значение пустого многочлена равно 0.0 при любом x.
  */
-fun polynom(p: List<Double>, x: Double): Double = TODO()
+
+fun polynom(p: List<Double>, x: Double): Double {
+    var res = 0.0
+    val isNotEmpty = p.isNotEmpty()
+    if (isNotEmpty) {
+        var value = p[0]
+        for (i in 1 until p.size) {
+            value += p[i] * x.pow(i)
+        }
+        res = value
+    }
+    return res
+}
 
 /**
  * Средняя
