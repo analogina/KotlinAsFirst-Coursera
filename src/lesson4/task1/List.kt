@@ -3,6 +3,8 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
+import kotlin.math.abs
 import kotlin.math.sqrt
 
 /**
@@ -115,24 +117,39 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double = TODO()
+fun abs(v: List<Double>): Double
+{
+    val squares: List<Double> = v.map { it * it }
+    return sqrt(squares.sum())
+}
+
+/*{
+    var res: Double;
+    var qsum: Double = 0.0;
+    /* todo: should be unsigned type */
+    val size: Int = v.size;
+
+    for(sel:Int in 0 until size){
+        val elem: Double = v[sel];
+        qsum += elem * elem;
+    }
+    res = sqrt(qsum);
+
+    return res;
+}*/
+
+
 /*
 {
-    fun squares(list: List<Double>) = v.map { it * it }
-    return sqrt(list.sum().toDouble())
+    var module = 0.0
+    for (i in 0 until v.size) {
+        val element = v[i];
+        module += sqr(element)
+    }
+    module = sqrt(module);
+    return module
 }
 */
-
-
-    /*
-    val module = 0.0
-    for (i in 0 until v.size) {
-        val element = v[i]
-        return module + sqr(element)
-    }
-    return sqrt(module)
-    */
-
 
 /**
  * Простая
@@ -160,7 +177,18 @@ fun mean(list: List<Double>): Double {
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> {
+    val isNotempty = list.isNotEmpty()
+    /* if only input list is not empty we should modify the list */
+    if(isNotempty){
+        val mean = list.sum() / list.size
+        for (i in 0 until list.size) {
+            list[i] = list[i] - mean
+        }
+    }
+    /* we always return input list */
+    return list
+}
 
 /**
  * Средняя
