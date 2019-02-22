@@ -3,8 +3,6 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
-import lesson1.task1.sqr
-import kotlin.math.abs
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -276,7 +274,9 @@ fun factorize(n: Int): List<Int> {
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String = factorize(n).joinToString("*")
+//val factors = factorize(n)
+//return factors.joinToString("*")
 
 /**
  * Средняя
@@ -285,13 +285,36 @@ fun factorizeToString(n: Int): String = TODO()
  * Результат перевода вернуть в виде списка цифр в base-ичной системе от старшей к младшей,
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
-fun convert(n: Int, base: Int): List<Int> = TODO()
+fun convert(n: Int, base: Int): List<Int> {
+    val res = mutableListOf<Int>()
+    var delimoe = n
+
+    println("chislo $n delim na $base")
+    while (delimoe / base != 0) {
+        val ostatok = delimoe % base
+
+        println("ostatok $ostatok")
+        res.add(ostatok)
+        delimoe /= base
+
+        println("novoe delimoe $delimoe")
+    }
+    res.add(delimoe % base)
+    val otvet = res.reversed()
+
+    println("napisat ostatki ot delenia v stroku $res" +
+            "otvet $otvet")
+    println("*******")
+    return otvet
+}
+
+
 
 /**
  * Сложная
  *
  * Перевести заданное целое число n >= 0 в систему счисления с основанием 1 < base < 37.
- * Результат перевода вернуть в виде строки, цифры более 9 представлять латинскими
+ * Результат перевода вернуть в виде строки, цифры более 9 представлять латинскимиfi
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
