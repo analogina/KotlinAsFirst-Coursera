@@ -289,22 +289,20 @@ fun convert(n: Int, base: Int): List<Int> {
     val res = mutableListOf<Int>()
     var delimoe = n
 
-    println("chislo $n delim na $base")
-    while (delimoe / base != 0) {
+//    println("chislo $n delim na $base")
+    while (delimoe != 0) {
         val ostatok = delimoe % base
-
-        println("ostatok $ostatok")
+//        println("ostatok $ostatok")
         res.add(ostatok)
-        delimoe /= base
 
-        println("novoe delimoe $delimoe")
+        delimoe /= base
+//        println("novoe delimoe $delimoe")
     }
-    res.add(delimoe % base)
     val otvet = res.reversed()
 
-    println("napisat ostatki ot delenia v stroku $res" +
-            "otvet $otvet")
-    println("*******")
+//    println("napisat ostatki ot delenia v stroku $res" +
+//            "otvet $otvet")
+//    println("*******")
     return otvet
 }
 
