@@ -181,6 +181,7 @@ class Tests {
         assertEquals(listOf(2, 14, 12), convert(1000, 19))
     }
 
+   /*
     @Test
     @Tag("Hard")
     fun convertToString() {
@@ -191,6 +192,7 @@ class Tests {
         assertEquals("z", convertToString(35, 36))
         assertEquals("a02220281", convertToString(Int.MAX_VALUE, 11))
     }
+    */
 
     @Test
     @Tag("Normal")

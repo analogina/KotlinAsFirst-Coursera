@@ -288,26 +288,20 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString("*")
 fun convert(n: Int, base: Int): List<Int> {
     val res = mutableListOf<Int>()
     var delimoe = n
-
 //    println("chislo $n delim na $base")
     while (delimoe != 0) {
         val ostatok = delimoe % base
 //        println("ostatok $ostatok")
         res.add(ostatok)
-
         delimoe /= base
 //        println("novoe delimoe $delimoe")
     }
     val otvet = res.reversed()
-
 //    println("napisat ostatki ot delenia v stroku $res" +
 //            "otvet $otvet")
 //    println("*******")
     return otvet
 }
-
-
-
 /**
  * Сложная
  *
@@ -316,8 +310,14 @@ fun convert(n: Int, base: Int): List<Int> {
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
-fun convertToString(n: Int, base: Int): String = TODO()
-
+/*
+fun convertToString(n: Int, base: Int): List<Unit> = convert(n, base).map{
+    when (it) {
+        <10 -> it.toChar()
+        else -> it.toChar()
+    }
+}
+*/
 /**
  * Средняя
  *
