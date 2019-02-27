@@ -103,7 +103,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
         var phonesAB: String
         if (phonesA == phonesB) {
             phonesAB = phonesA
-        } else phonesAB = phonesA + phonesB
+        } else phonesAB = listOf(phonesA, phonesB).toString()
         newPhoneBook = mapB + Pair(name, phonesAB)
     }
     return newPhoneBook
