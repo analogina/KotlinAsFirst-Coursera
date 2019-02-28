@@ -95,18 +95,33 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
 fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
-    var newPhoneBook = mapA
-    for ((name, phone) in mapA) {
-        val phonesA = newPhoneBook
-                .getOrDefault(name, String.toString())
-        val phonesB = mapB.getOrDefault(name, String.toString())
-        var phonesAB: String
-        if (phonesA == phonesB) {
-            phonesAB = phonesA
-        } else phonesAB = listOf(phonesA, phonesB).toString()
-        newPhoneBook = mapB + Pair(name, phonesAB)
+    val newPhoneBook : MutableMap<String, String> = mutableMapOf<String, String>();
+
+    for ((nameA, phoneA) in mapA) {
+        /* every cycle iteration im get new name/phone pair */
+        if(true == mapB.containsKey(nameA)){
+            /* if mapB contains key from mapA,
+             * expand the data in result array with
+             * this key
+             */
+            if(mapB[nameA] != mapA[nameA]) {
+                val res: String = phoneA + ", " + mapB[nameA];
+
+                newPhoneBook.put(nameA, res);
+            }
+        }else{
+            /* put the content of A to the result */
+            newPhoneBook.put(nameA, phoneA);
+        }
     }
-    return newPhoneBook
+
+    for ((nameB, phoneB) in mapB) {
+        if(false == newPhoneBook.containsKey(nameB)){
+                newPhoneBook.put(nameB, phoneB);
+        }
+    }
+
+    return newPhoneBook.toMap()
 }
 
 /**
@@ -152,7 +167,15 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "z", "b" to "sweet")) -> true
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
-fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean = TODO()
+fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
+    var result : Boolean = true
+    for((keyA , valueA) in a) {
+        if(b.containsKey(keyA) == true) {
+            if (a[keyA] == b[keyA]) result
+        }else result = false
+    }
+    return result
+}
 
 /**
  * Средняя
