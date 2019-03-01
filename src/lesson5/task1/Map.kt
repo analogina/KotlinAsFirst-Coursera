@@ -95,29 +95,29 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
 fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
-    val newPhoneBook: MutableMap<String, String> = mutableMapOf<String, String>();
+    val newPhoneBook: MutableMap<String, String> = mutableMapOf<String, String>()
 
     for ((nameA, phoneA) in mapA) {
         /* every cycle iteration im get new name/phone pair */
-        if (true == mapB.containsKey(nameA)) {
+        if (mapB.containsKey(nameA)) {
             /* if mapB contains key from mapA,
              * expand the data in result array with
              * this key
              */
             if (mapB[nameA] != mapA[nameA]) {
-                val res: String = phoneA + ", " + mapB[nameA];
+                val res: String = phoneA + ", " + mapB[nameA]
 
-                newPhoneBook.put(nameA, res);
+                newPhoneBook.put(nameA, res)
             }
         } else {
             /* put the content of A to the result */
-            newPhoneBook.put(nameA, phoneA);
+            newPhoneBook.put(nameA, phoneA)
         }
     }
 
     for ((nameB, phoneB) in mapB) {
         if (false == newPhoneBook.containsKey(nameB)) {
-            newPhoneBook.put(nameB, phoneB);
+            newPhoneBook.put(nameB, phoneB)
         }
     }
 
@@ -137,7 +137,6 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
 fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
 //    var g2s = emptyMap<Int, List<String>>()
 //            .withDefault{ listOf() }
-
     var gradeToStudends = emptyMap<Int, List<String>>()
     for ((name, assessment) in grades) {
 //        println("name = $name, grade = $assessment")
@@ -171,16 +170,23 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
     var result: Boolean = true
 
     for ((keyA, valueA) in a) {
-        if (b.containsKey(keyA) == true) {
-            if (a[keyA] != b[keyA]) {
-                result = false
-                break
-            }
-        } else {
+        if (!b.containsKey(keyA) || a[keyA] != b[keyA]) {
             result = false
             break
         }
     }
+
+//    for ((keyA, valueA) in a) {
+//        if (b.containsKey(keyA)) {
+//            if (a[keyA] != b[keyA]) {
+//                result = false
+//                break
+//            }
+//        } else {
+//            result = false
+//            break
+//        }
+//    }
     return result
 }
 
@@ -194,7 +200,27 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
  *   averageStockPrice(listOf("MSFT" to 100.0, "MSFT" to 200.0, "NFLX" to 40.0))
  *     -> mapOf("MSFT" to 150.0, "NFLX" to 40.0)
  */
-fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> = TODO()
+fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> {
+    var groopPrices = emptyMap<String, List<Double>>()
+    var averagePrices = emptyMap<String, Double>()
+    for ((stock, price) in stockPrices) {
+        println("input pair: $stock - $price")
+        val oldPrices: List<Double> = groopPrices.getOrDefault(stock, listOf())
+        val newPrices = oldPrices.plus(price)
+        println("old prices: $oldPrices")
+        println("new prices: $newPrices")
+        groopPrices = groopPrices + Pair(stock, newPrices)
+        println("new group prices $groopPrices")
+    }
+    for ((stock, prices) in groopPrices) {
+        //var averagePrices = emptyMap<String, Double>()
+        val sumPrice = prices.sum()
+        val averagePrice = sumPrice / prices.size
+        println("averagePrices = $averagePrice")
+        averagePrices = averagePrices + Pair(stock, averagePrice)
+    }
+    return averagePrices
+}
 
 /**
  * Средняя
