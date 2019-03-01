@@ -204,19 +204,18 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
     var groopPrices = emptyMap<String, List<Double>>()
     var averagePrices = emptyMap<String, Double>()
     for ((stock, price) in stockPrices) {
-        println("input pair: $stock - $price")
+//        println("input pair: $stock - $price")
         val oldPrices: List<Double> = groopPrices.getOrDefault(stock, listOf())
         val newPrices = oldPrices.plus(price)
-        println("old prices: $oldPrices")
-        println("new prices: $newPrices")
+//        println("old prices: $oldPrices")
+//        println("new prices: $newPrices")
         groopPrices = groopPrices + Pair(stock, newPrices)
-        println("new group prices $groopPrices")
+//        println("new group prices $groopPrices")
     }
     for ((stock, prices) in groopPrices) {
-        //var averagePrices = emptyMap<String, Double>()
         val sumPrice = prices.sum()
         val averagePrice = sumPrice / prices.size
-        println("averagePrices = $averagePrice")
+//        println("averagePrices = $averagePrice")
         averagePrices = averagePrices + Pair(stock, averagePrice)
     }
     return averagePrices
