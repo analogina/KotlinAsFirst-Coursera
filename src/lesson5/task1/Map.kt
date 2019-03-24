@@ -116,7 +116,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
     }
 
     for ((nameB, phoneB) in mapB) {
-        if (false == newPhoneBook.containsKey(nameB)) {
+        if (!newPhoneBook.containsKey(nameB)) {
             newPhoneBook.put(nameB, phoneB)
         }
     }
@@ -236,7 +236,7 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  *     "печенье"
  *   ) -> "Мария"
  */
-fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? = TODO()
+fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String = TODO()
 
 /**
  * Сложная

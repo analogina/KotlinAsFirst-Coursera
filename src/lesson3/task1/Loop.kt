@@ -3,8 +3,7 @@
 package lesson3.task1
 
 import lesson1.task1.sqr
-import kotlin.math.min
-import kotlin.math.sqrt
+import kotlin.math.*
 
 /**
  * Пример
@@ -230,7 +229,34 @@ fun collatzSteps(x: Int): Int {
  * sin(x) = x - x^3 / 3! + x^5 / 5! - x^7 / 7! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun sin(x: Double, eps: Double): Double = TODO()
+fun sin(x: Double, eps: Double): Double {
+    val y = x % (2 * PI)
+    println("y = $y")
+    var i = 1
+    var member = y.pow(i)/ factorial(i)
+    var res = member
+    var n = 1
+    println("эпсилон = $eps")
+    println("x = $x")
+    println("i = $i")
+    println("член ряда = $member")
+    println("результат = $res")
+    while (abs(member) >= eps) {
+        i += 2
+        n = -n
+        member = n * y.pow(i) / factorial(i)
+        res += member
+        println("i = $i")
+        println("n = $n")
+        println("member = $member")
+        println("eps = $eps")
+        println("abs(eps) = ${abs(eps)}")
+        println("abs(member) >= eps = ${abs(member) >= eps}")
+        println("новый результат = $res")
+    }
+    println("-------------------------------")
+    return res
+}
 
 /**
  * Средняя
@@ -239,8 +265,36 @@ fun sin(x: Double, eps: Double): Double = TODO()
  * cos(x) = 1 - x^2 / 2! + x^4 / 4! - x^6 / 6! + ...
  * Нужную точность считать достигнутой, если очередной член ряда меньше eps по модулю
  */
-fun cos(x: Double, eps: Double)
-        : Double = TODO()
+fun cos(x: Double, eps: Double): Double {
+    /* period of cosinus is 2 PI */
+    val y = x % (2 * PI)
+    var i = 2
+    var n = -1
+    var member = y.pow(i) / factorial(i)
+    var res = 1 + (n * member)
+    println("x = $x")
+    println("y = $y")
+    println("i = $i")
+    println("эпсилон = $eps")
+    println("n = $n")
+    println("member = $member")
+    println("res = $res")
+    while (abs(member) >= eps){
+        i += 2
+        n = -n
+        member = y.pow(i) / factorial(i)
+        res += member
+        println("i = $i")
+        println("n = $n")
+        println("member = $member")
+        println("abs(member) >= eps = ${abs(member) >= eps}")
+        println("res = $res")
+
+    }
+    println("res = $res")
+    println("*******************")
+    return res
+}
 
 /**
  * Средняя

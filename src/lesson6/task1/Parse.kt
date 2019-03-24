@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import lesson2.task2.daysInMonth
+
 /**
  * Пример
  *
@@ -49,12 +51,10 @@ fun main(args: Array<String>) {
         val seconds = timeStrToSeconds(line)
         if (seconds == -1) {
             println("Введённая строка $line не соответствует формату ЧЧ:ММ:СС")
-        }
-        else {
+        } else {
             println("Прошло секунд с начала суток: $seconds")
         }
-    }
-    else {
+    } else {
         println("Достигнут <конец файла> в процессе чтения строки. Программа прервана")
     }
 }
@@ -71,7 +71,32 @@ fun main(args: Array<String>) {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+fun dateStrToDigit(str: String): String {
+    val res = ""
+    val parts = str.split(" ")
+//    println("части входной строки = $parts")
+    if (parts.size != 3)
+        return res
+//    println("введенная строка = $str")
+//    println("строка не пустая ${!str.isNullOrEmpty()}")
+//    println("$parts")
+    val data = parts.component1().toInt()
+    val monthList: List<String> = listOf(
+            "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря")
+//    println("список месяцев $monthList")
+    val monthIndex = (monthList.indexOf(parts.component2()) + 1)
+    if (monthIndex == 0)
+        return res
+    val year = parts.component3().toInt()
+//    println("номер месяца = $monthIndex")
+//    println("год = $year")
+    val dayInMonth = daysInMonth(monthIndex, year)
+    if ((data in 1..dayInMonth).not())
+        return res
+//    println("ответ ${String.format("%02d.%02d.%d", data, monthIndex, year)}")
+    return String.format("%02d.%02d.%d", data, monthIndex, year)
+}
 
 /**
  * Средняя
@@ -83,7 +108,23 @@ fun dateStrToDigit(str: String): String = TODO()
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30 февраля 2009) считается неверными
  * входными данными.
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    println("введенная строка = $digital")
+    val parts = digital.split("")
+    val data = parts.component1()
+    val monthIndex = parts.component2()
+    val monthList: List<String> = listOf(
+            "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря")
+    val monthString = (monthList.indexOf(element = monthIndex))
+    val year = parts.component3()
+    println("части = $parts")
+    println("введенная дата = $data")
+    println("введенный месяц = $monthIndex")
+    println("номер месяца = $monthString")
+    println("введенный год = $year")
+    return ""
+}
 
 /**
  * Средняя
