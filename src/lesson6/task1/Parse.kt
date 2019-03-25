@@ -92,7 +92,7 @@ fun dateStrToDigit(str: String): String {
 //    println("номер месяца = $monthIndex")
 //    println("год = $year")
     val dayInMonth = daysInMonth(monthIndex, year)
-    if ((data in 1..dayInMonth).not())
+    if ((data !in 1..dayInMonth))
         return res
 //    println("ответ ${String.format("%02d.%02d.%d", data, monthIndex, year)}")
     return String.format("%02d.%02d.%d", data, monthIndex, year)
@@ -109,21 +109,36 @@ fun dateStrToDigit(str: String): String {
  * входными данными.
  */
 fun dateDigitToStr(digital: String): String {
-    println("введенная строка = $digital")
-    val parts = digital.split("")
-    val data = parts.component1()
-    val monthIndex = parts.component2()
+//    println("введенная строка = $digital")
+    val res = ""
+    val parts = digital.split(".")
+    if (parts.size != 3)
+        return res
+    val data: Int
+    try {
+        data = parts.component1().toInt()
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+    val monthIndex = parts.component2().toInt()
+    if (monthIndex !in 1..12)
+        return res
     val monthList: List<String> = listOf(
             "января", "февраля", "марта", "апреля", "мая", "июня",
             "июля", "августа", "сентября", "октября", "ноября", "декабря")
-    val monthString = (monthList.indexOf(element = monthIndex))
-    val year = parts.component3()
-    println("части = $parts")
-    println("введенная дата = $data")
-    println("введенный месяц = $monthIndex")
-    println("номер месяца = $monthString")
-    println("введенный год = $year")
-    return ""
+    val monthName = (monthList.elementAt(monthIndex - 1))
+    val year = parts.component3().toInt()
+    val daysInM = daysInMonth(monthIndex, year)
+//    println("дней в месяце = $daysInM")
+    if (data !in 1..daysInM)
+        return res
+//    println("части = $parts")
+//    println("введенная дата = $data")
+//    println("введенный номер месяца = $monthIndex")
+//    println("имя месяца = $monthName")
+//    println("введенный год = $year")
+//    println("ответ ${String.format("%d %s %d", data, monthName, year)}")
+    return String.format("%d %s %d", data, monthName, year)
 }
 
 /**
